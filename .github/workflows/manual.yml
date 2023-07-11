@@ -57,7 +57,8 @@ jobs:
 
     - name: Test yarn using Node.js ${{ inputs.node-version }}
       if: ${{ inputs.node-version}} != 'no test'
-      uses: ArtiomTr/jest-coverage-report-action@v2
+      # uses: ArtiomTr/jest-coverage-report-action@v2
+      uses: romeovs/lcov-reporter-action@v0.2.11
 
     # - name: Test yarn using Node.js ${{ inputs.node-version }}
     #   # if: ${{ inputs.test-file}} != 'empty'
