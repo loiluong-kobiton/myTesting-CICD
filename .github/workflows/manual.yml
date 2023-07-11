@@ -29,8 +29,8 @@ on:
         default: 'no test'
         type: choice
         options:
-          - 14.x
           - 16.x
+          - 14.x
           - 18.x
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -45,6 +45,10 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
+
+    - name: Clone repo (Latest)
+      uses: actions/checkout@v3
+
 
 
     - name: Install Node.js ${{ inputs.node-version }}
