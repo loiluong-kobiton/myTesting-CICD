@@ -67,10 +67,10 @@ jobs:
         #   test-script: yarn jest
 
       - name: test yarn
-        run: yarn test --coverage
+        run: yarn add --dev jest
 
       - name: check coverage
         uses: mattallty/jest-github-action@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.TEST_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
