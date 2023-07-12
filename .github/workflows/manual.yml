@@ -26,7 +26,7 @@ on:
       
       node-version:
         description: 'Node version'
-        # default: 'no test'
+        default: '16.x'
         type: choice
         options:
           - 16.x
@@ -40,10 +40,7 @@ jobs:
   greet:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    permissions:
-      checks: write
-      pull-requests: write
-      contents: write
+    
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -51,31 +48,40 @@ jobs:
       - name: Send greeting
         run: echo "Hello ${{ inputs.name }}"
 
+      
+
+
+
+  node:
+    runs-on: ubuntu-runner
+    # permissions:
+    #   checks: write
+    #   pull-requests: write
+    #   contents: write
+    steps:
       - name: Clone repo (Latest)
         uses: actions/checkout@v3
-
-
 
       - name: Install Node.js ${{ inputs.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ github.event.inputs.node-version}}
       
-      # - name: check coverage
-        # uses: ArtiomTr/jest-coverage-report-action@v2
-        # with:
-        #   test-script: yarn jest
-
-      - name: test yarn
-        run: |
-          yarn add --dev jest
-          yarn install
-          yarn jest --coverage --json --outputFile=/home/runner/work/_actions/mattallty/jest-github-action/v1/dist/jest.results.json
-
       - name: check coverage
-        uses: mattallty/jest-github-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          test-command: "yarn test"
+          test-script: yarn jest
+
+      # - name: test yarn
+      #   run: |
+      #     yarn add --dev jest
+      #     yarn install
+      #     yarn jest --coverage --json --outputFile=/home/runner/work/_actions/mattallty/jest-github-action/v1/dist/jest.results.json
+
+      # - name: check coverage
+      #   uses: mattallty/jest-github-action@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     test-command: "yarn test"
       
