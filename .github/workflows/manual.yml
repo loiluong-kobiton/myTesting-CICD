@@ -43,34 +43,36 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+      - name: Send greeting
+        run: echo "Hello ${{ inputs.name }}"
 
-    - name: Clone repo (Latest)
-      uses: actions/checkout@v3
+      - name: Clone repo (Latest)
+        uses: actions/checkout@v3
 
 
 
-    - name: Install Node.js ${{ inputs.node-version }}
-      if: ${{ inputs.node-version}} != 'no test'
-      uses: actions/setup-node@v3
+      - name: Install Node.js ${{ inputs.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ github.event.inputs.node-version}}
+        # run: yarn install
 
-    - name: Test yarn using Node.js ${{ inputs.node-version }}
-      run: yarn test --coverage
-      # if: ${{ inputs.node-version}} != 'no test'
-      # uses: ArtiomTr/jest-coverage-report-action@v2
-    - name: Get report
-      uses: irongut/CodeCoverageSummary@v1.3.0
-      with:
-        filename: coverage/clover.xml
+      - name: Test yarn using Node.js ${{ inputs.node-version }}
+        run: yarn test --coverage
+        # if: ${{ inputs.node-version}} != 'no test'
+        # uses: ArtiomTr/jest-coverage-report-action@v2
+      - name: Get report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: coverage/clover.xml
 
-    # - name: Test yarn using Node.js ${{ inputs.node-version }}
-    #   # if: ${{ inputs.test-file}} != 'empty'
-    #   if: ${{ inputs.node-version}} != 'no test'
-    #   uses: actions/setup-node@v3
-    #   with:
-    #     node-version: ${{ inputs.node-version }}
-    #   run: |
-    #     yarn install
-    #     yarn test
+      # - name: Test yarn using Node.js ${{ inputs.node-version }}
+      #   # if: ${{ inputs.test-file}} != 'empty'
+      #   if: ${{ inputs.node-version}} != 'no test'
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: ${{ inputs.node-version }}
+      #   run: |
+      #     yarn install
+      #     yarn test
 
