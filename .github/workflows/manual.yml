@@ -61,13 +61,13 @@ jobs:
         with:
           node-version: ${{ github.event.inputs.node-version}}
       
-      - name: check coerage
+      - name: check coverage
         # uses: ArtiomTr/jest-coverage-report-action@v2
         # with:
         #   test-script: yarn jest
         uses: actions/github-script@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.TEST_TOKEN }}
           script: |
             const { data: commits } = await github.rest.repos.listCommits({
               owner: context.repo.owner,
