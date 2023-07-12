@@ -53,7 +53,7 @@ jobs:
 
 
   node:
-    runs-on: ubuntu-runner
+    runs-on: ubuntu-lastest
     # permissions:
     #   checks: write
     #   pull-requests: write
