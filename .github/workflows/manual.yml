@@ -67,7 +67,10 @@ jobs:
         #   test-script: yarn jest
 
       - name: test yarn
-        run: yarn add --dev jest
+        run: |
+          yarn add --dev jest
+          yarn install
+          yarn jest --coverage --json --outputFile=/home/runner/work/_actions/mattallty/jest-github-action/v1/dist/jest.results.json
 
       - name: check coverage
         uses: mattallty/jest-github-action@v1
