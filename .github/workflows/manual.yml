@@ -66,6 +66,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ github.event.inputs.node-version}}
+      - run: yarn install
       
       - name: check coverage
         uses: ArtiomTr/jest-coverage-report-action@v2
