@@ -20,6 +20,8 @@
     "jest-cli": "15.1.1"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "collectCoverage": true
+
   }
 }

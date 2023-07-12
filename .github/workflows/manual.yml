@@ -26,7 +26,7 @@ on:
       
       node-version:
         description: 'Node version'
-        default: 'no test'
+        # default: 'no test'
         type: choice
         options:
           - 16.x
@@ -56,9 +56,13 @@ jobs:
       uses: actions/setup-node@v3
 
     - name: Test yarn using Node.js ${{ inputs.node-version }}
-      if: ${{ inputs.node-version}} != 'no test'
+      run: yarn test --coverage
+      # if: ${{ inputs.node-version}} != 'no test'
       # uses: ArtiomTr/jest-coverage-report-action@v2
+    - name: Get report
       uses: romeovs/lcov-reporter-action@v0.2.11
+      with:
+        lcov-file: ./coverage/lcov.info
 
     # - name: Test yarn using Node.js ${{ inputs.node-version }}
     #   # if: ${{ inputs.test-file}} != 'empty'
