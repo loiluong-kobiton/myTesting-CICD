@@ -61,26 +61,16 @@ jobs:
         with:
           node-version: ${{ github.event.inputs.node-version}}
       
-      - name: check coverage
+      # - name: check coverage
         # uses: ArtiomTr/jest-coverage-report-action@v2
         # with:
         #   test-script: yarn jest
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{ secrets.TEST_TOKEN }}
-          script: |
-            const { data: commits } = await github.rest.pulls.listCommits({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              sha: context.sha,
-              pull_number: context.payload.pull_request.number
-            });
-            const commit = commits[0];
-            const coverageResult = `The test result is: ${process.env.CI ? 'success' : 'failure'}`;
-            const comment = `Test result for commit ${commit.sha.substr(0, 7)}:\n\n${coverageResult}`;
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: commit.commit.message,
-              body: comment,
-            });
+
+      - name: test yarn
+        run: yarn test --coverage
+
+      - name: check coverage
+        uses: mattallty/jest-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TEST_TOKEN }}
+      
