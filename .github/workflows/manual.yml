@@ -62,18 +62,24 @@ jobs:
           node-version: ${{ github.event.inputs.node-version}}
       
       - name: check coerage
-        uses: ArtiomTr/jest-coverage-report-action@v2
+        # uses: ArtiomTr/jest-coverage-report-action@v2
+        # with:
+        #   test-script: yarn jest
+        uses: actions/github-script@v4
         with:
-          test-script: yarn jest
-
-
-      # - name: Install jest
-      #   run: yarn add --dev jest
-
-      # - name: Test yarn using Node.js ${{ inputs.node-version }}
-      #   run: yarn test --coverage
-
-      # - name: Get report
-      #   uses: irongut/CodeCoverageSummary@v1.3.0
-      #   with:
-      #     filename: coverage/clover.xml
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: commits } = await github.rest.repos.listCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+            });
+            const commit = commits[0];
+            const coverageResult = `The test result is: ${process.env.CI ? 'success' : 'failure'}`;
+            const comment = `Test result for commit ${commit.sha.substr(0, 7)}:\n\n${coverageResult}`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: commit.commit.message,
+              body: comment,
+            });
