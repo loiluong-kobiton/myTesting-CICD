@@ -55,14 +55,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ github.event.inputs.node-version}}
-          
-      - name: Install jest
-        run: yarn add --dev jest
-
-      - name: Test yarn using Node.js ${{ inputs.node-version }}
-        run: yarn test --coverage
-
-      - name: Get report
-        uses: irongut/CodeCoverageSummary@v1.3.0
+      
+      - name: check coerage
+        uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          filename: coverage/clover.xml
+          test-script: yarn jest
+
+
+      # - name: Install jest
+      #   run: yarn add --dev jest
+
+      # - name: Test yarn using Node.js ${{ inputs.node-version }}
+      #   run: yarn test --coverage
+
+      # - name: Get report
+      #   uses: irongut/CodeCoverageSummary@v1.3.0
+      #   with:
+      #     filename: coverage/clover.xml
