@@ -16,6 +16,8 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "gulp": "^4.0.2",
+    "gulp-eslint": "^6.0.0",
+    "gulp-sourcemaps": "^3.0.0",
     "lodash": "^4.16.2"
   },
   "devDependencies": {
