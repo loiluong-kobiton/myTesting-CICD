@@ -12,6 +12,11 @@ module.exports = {
     if (width === 0 || height === 0) {
       return 0;
     }
+
+    if (width < 0 || height < 0) {
+      throw new Error('Negative values are not allowed.');
+    }
+    
     return multiply(height, width);
   }
 }
