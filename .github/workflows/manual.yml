@@ -54,10 +54,10 @@ jobs:
 
   node:
     runs-on: ubuntu-latest
-    permissions:
+    # permissions:
       # checks: write
       # pull-requests: write
-      contents: write
+      # contents: write
     steps:
       - name: Clone repo (Latest)
         uses: actions/checkout@v3
