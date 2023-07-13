@@ -9,6 +9,9 @@ var multiply = require('lodash/multiply');
 
 module.exports = {
   area_rectangle: function(width, height) {
-    return multiply(height, width)-1;
+    if (width === 0 || height === 0) {
+      return 0;
+    }
+    return multiply(height, width);
   }
 }
