@@ -73,16 +73,14 @@ jobs:
         with:
           test-script: yarn jest
 
-      # - name: test yarn
-      #   run: |
-      #     yarn add --dev jest
-      #     yarn install
-      #     yarn jest --coverage --json --outputFile=/home/runner/work/_actions/mattallty/jest-github-action/v1/dist/jest.results.json
+  build-test:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
 
-      # - name: check coverage
-      #   uses: mattallty/jest-github-action@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     test-command: "yarn test"
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell
+      - name: building step
+        run: echo "Hello ${{ inputs.name }}"
       
