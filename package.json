@@ -8,7 +8,8 @@
     "type": "git"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "babel src -d lib"
   },
   "author": "Yarn Contributors",
   "license": "BSD-2-Clause",
