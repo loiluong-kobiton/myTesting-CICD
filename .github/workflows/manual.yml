@@ -40,7 +40,7 @@ jobs:
       - name: check coverage
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          package-manager: yarn
+          # package-manager: yarn
           test-script: yarn jest
   build:
     runs-on: ubuntu-latest
