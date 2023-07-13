@@ -19,6 +19,7 @@
     "lodash": "^4.16.2"
   },
   "devDependencies": {
+    "handlebars": "^4.5.0",
     "jest": "^29.6.1",
     "jest-cli": "15.1.1"
   }
