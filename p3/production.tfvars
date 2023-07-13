@@ -1,1 +1,0 @@
-instance_public_type = "t2.micro"

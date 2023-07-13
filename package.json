@@ -9,16 +9,17 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "babel src -d lib"
+    "build": "babel src -d lib",
+    "lint": "NODE_ENV=development gulp lint"
   },
   "author": "Yarn Contributors",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "gulp": "^4.0.2",
     "lodash": "^4.16.2"
   },
   "devDependencies": {
     "jest": "^29.6.1",
     "jest-cli": "15.1.1"
   }
-
 }
