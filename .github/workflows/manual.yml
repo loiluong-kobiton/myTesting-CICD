@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send greeting
-        run: echo "Hello this is testing install and test Node.js ${{ inputs.node-version }}"
+        run: echo "Hello this is testing install and test Node.js ${{ github.event.inputs.node-version }}"
 
   test:
     name: Yarn test
@@ -32,10 +32,10 @@ jobs:
       - name: Clone Repository (Latest)
         uses: actions/checkout@v3
 
-      - name: Install Node.js ${{ inputs.node-version }}
+      - name: Install Node.js ${{ github.event.inputs.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ inputs.node-version}}
+          node-version: ${{ github.event.inputs.node-version}}
       
       - name: check coverage
         uses: ArtiomTr/jest-coverage-report-action@v2
@@ -47,6 +47,6 @@ jobs:
     needs: test
     steps:
       - name: building step
-        run: echo "Hello ${{ inputs.node-version }}"
+        run: echo "Hello ${{ github.event.inputs.node-version }}"
       
 
