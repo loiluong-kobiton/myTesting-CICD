@@ -22,9 +22,9 @@ jobs:
 
   test:
     name: Yarn test
-    if: github.event_name == 'pull_request'
+    # if: github.event_name == 'pull_request'
     runs-on:
-      group: ubuntu-runners
+      group: ubuntu-latest
     permissions:
       checks: write
       pull-requests: write
