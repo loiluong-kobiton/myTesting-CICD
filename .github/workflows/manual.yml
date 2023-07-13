@@ -1,16 +1,16 @@
 name: test and get result on commit
-
-
 on:
   workflow_dispatch:
-    
     inputs:
       node-version:
         description: 'Node version'
         required: false
         type: string
         default: 14.x
-        
+  
+  push:
+    branches:
+      - '**'
 
 
 jobs:
@@ -23,8 +23,7 @@ jobs:
   test:
     name: Yarn test
     # if: github.event_name == 'pull_request'
-    runs-on:
-      group: ubuntu-latest
+    runs-on: ubuntu-latest
     permissions:
       checks: write
       pull-requests: write
