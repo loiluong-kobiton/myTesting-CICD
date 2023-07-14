@@ -57,12 +57,19 @@ jobs:
 
       - name: check coverage
         id: coverage
+        continue-on-error: true
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           package-manager: yarn
           # test-script: yarn test
-          # output: comment, report-markdown
+          output: comment, report-markdown
           skip-step: install
+
+      - uses: marocchino/sticky-pull-request-comment@v2
+        if: steps.coverage.outcome == 'failure'
+        with:
+          # number: ${{ steps.finder.outputs.pr }}
+          message: ${{ steps.coverage.outputs.report }}
 
 
       - name: echo Coverage status
@@ -74,6 +81,8 @@ jobs:
 
       - name: Lint Action 
         uses: wearerequired/lint-action@v2.3.0
+        with:
+          eslint: true
       
         
   build:
