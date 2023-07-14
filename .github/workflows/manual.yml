@@ -46,13 +46,14 @@ jobs:
       
 
 
-      - name: Install dependencies
-        run: |
-          echo "Install node status: ${{ steps.install.outcome }}"
-          npm install --global yarn
-          yarn install
+      # - name: Install dependencies
+      #   run: |
+      #     echo "Install node status: ${{ steps.install.outcome }}"
+      #     npm install --global yarn
+      #     yarn install
 
-      
+      - uses: jwalton/gh-find-current-pr@v1
+        id: findPr
 
 
       - name: check coverage
@@ -63,14 +64,15 @@ jobs:
           # package-manager: yarn
           test-script: yarn test
           output: comment, report-markdown
-          skip-step: install
+          # skip-step: install
+          prnumber: ${{ steps.findPr.outputs.number }}
 
-      - name: Create commit comment
-        uses: peter-evans/commit-comment@v2
-        continue-on-error: true
-        # if: steps.coverage.outcome == 'failure'
-        with:
-          body: "this is the report ${{ steps.coverage.outputs.report }}"
+      # - name: Create commit comment
+      #   uses: peter-evans/commit-comment@v2
+      #   continue-on-error: true
+      #   # if: steps.coverage.outcome == 'failure'
+      #   with:
+      #     body: "this is the report ${{ steps.coverage.outputs.report }}"
          
 
 
