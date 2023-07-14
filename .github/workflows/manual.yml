@@ -42,7 +42,7 @@ jobs:
         id: install-node-manually
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ github.event.inputs.node-version || '14.x' }}
+          node-version: ${{ github.event.inputs.node-version || '18.x' }}
       
 
 
