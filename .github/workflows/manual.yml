@@ -40,7 +40,7 @@ jobs:
       
       - name: echo Install status
         run: |
-          echo "Install node status: ${{ steps.install.outcome}}"
+          echo "Install node status: ${{ steps.install.outcome }}"
       
       - name: check coverage
         id: coverage
@@ -54,13 +54,15 @@ jobs:
         run: cat report.json
 
       - name: echo Coverage status
-        run: echo ${{ steps.coverage.outcome}}
+        run: echo ${{ steps.coverage.outcome }}
         
   build:
     runs-on: ubuntu-latest
     needs: test
     steps:
       - name: building step
-        run: echo "Hello ${{ github.event.inputs.node-version }}"
+        run: |
+          echo "Hello ${{ github.event.inputs.node-version }}"
+          echo "status of test - install node ${{ needs.test.result }}"
       
 
