@@ -38,8 +38,7 @@ jobs:
       - name: Clone Repository (Latest)
         uses: actions/checkout@v3
 
-      - name: Install Node.js ${{ github.event.inputs.node-version }} 
-        # if: github.event_name == 'workflow_dispatch'
+      - name: Install Node.js ${{ github.event.inputs.node-version || '14.x' }}
         id: install-node-manually
         uses: actions/setup-node@v3
         with:
@@ -59,11 +58,19 @@ jobs:
         with:
           # package-manager: yarn
           test-script: yarn test
-          output: comment, report-markdown
+          # output: comment, report-markdown
 
 
       - name: echo Coverage status
         run: echo ${{ steps.coverage.outcome }}
+
+       
+      - name: My Lint Action
+        run: yarn lint
+
+      - name: Lint Action 
+        uses: wearerequired/lint-action@v2.3.0
+      
         
   build:
     runs-on: ubuntu-latest
