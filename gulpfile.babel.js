@@ -21,4 +21,3 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('default', gulp.series('lint'));

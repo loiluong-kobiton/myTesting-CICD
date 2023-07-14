@@ -11,8 +11,8 @@ const config = {
             function: 50,
             statements: 50
         },
-    }
-    // verbose: true,
+    },
+    "verbose": true,
 };
 
 module.exports = config;
