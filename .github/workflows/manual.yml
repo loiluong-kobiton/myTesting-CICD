@@ -33,9 +33,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Node.js ${{ github.event.inputs.node-version }}
+        id: install-node
         uses: actions/setup-node@v3
         with:
           node-version: ${{ github.event.inputs.node-version}}
+      
+      - name: echo Install status
+        run: |
+          echo "Install node status: ${{ steps.install.outcome}}"
       
       - name: check coverage
         id: coverage
@@ -48,9 +53,8 @@ jobs:
       - name: echo coverage report
         run: cat report.json
 
-      - name: echo comment
-        run: echo ${{ steps.coverage.outputs.report}}
-        
+      - name: echo Coverage status
+        run: echo ${{ steps.coverage.outcome}}
         
   build:
     runs-on: ubuntu-latest
