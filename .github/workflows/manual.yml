@@ -65,11 +65,12 @@ jobs:
           output: comment, report-markdown
           skip-step: install
 
-      - uses: marocchino/sticky-pull-request-comment@v2
+      - name: Create commit comment
+        uses: peter-evans/commit-comment@v2
         if: steps.coverage.outcome == 'failure'
         with:
-          # number: ${{ steps.finder.outputs.pr }}
-          message: ${{ steps.coverage.outputs.report }}
+          body: ${{ steps.coverage.outputs.report }}
+         
 
 
       - name: echo Coverage status
