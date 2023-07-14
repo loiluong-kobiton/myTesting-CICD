@@ -8,10 +8,23 @@
     "type": "git"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --config=jest.config.js",
     "build": "babel src -d lib",
     "lint": "NODE_ENV=development gulp lint"
+
+
   },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 75,
+        "lines": 75,
+        "statements": 75
+      }
+    }
+  },
+
   "author": "Yarn Contributors",
   "license": "BSD-2-Clause",
   "dependencies": {
@@ -28,4 +41,5 @@
     "jshint": "^2.13.6",
     "jshint-stylish": "^2.2.1"
   }
+  
 }
