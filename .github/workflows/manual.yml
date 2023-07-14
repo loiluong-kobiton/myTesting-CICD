@@ -58,7 +58,7 @@ jobs:
         with:
           # package-manager: yarn
           test-script: yarn test
-          # output: comment, report-markdown
+          output: comment, report-markdown
 
 
       - name: echo Coverage status
