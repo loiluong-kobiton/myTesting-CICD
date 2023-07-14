@@ -1,5 +1,13 @@
 const config = {
-    "coverageThreshold": {
+    testEnvironment: 'node',
+
+    collectCoverageFrom: [
+      '<rootDir>/src/*.js'
+
+    ],
+    coverageReporters: ['text-summary', 'json-summary', 'lcov'],
+
+    coverageThreshold: {
         "global": {
             "lines": 80,
             "branches": 80,

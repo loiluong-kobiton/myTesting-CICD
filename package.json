@@ -8,7 +8,7 @@
     "type": "git"
   },
   "scripts": {
-    "test": "jest ",
+    "test": "jest --config=jest.config.js",
     "build": "babel src -d lib",
     "lint": "NODE_ENV=development gulp lint"
 
