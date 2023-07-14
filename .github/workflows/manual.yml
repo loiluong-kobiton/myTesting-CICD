@@ -60,8 +60,8 @@ jobs:
         continue-on-error: true
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          package-manager: yarn
-          # test-script: yarn test
+          # package-manager: yarn
+          test-script: yarn test
           output: comment, report-markdown
           skip-step: install
 
