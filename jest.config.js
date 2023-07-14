@@ -1,21 +1,21 @@
-// const config = {
-//     "coverageThreshold": {
-//         "global": {
-//             "lines": 80,
-//             "branches": 80,
-//             "function": 80,
-//             "statements": 80
+const config = {
+    "coverageThreshold": {
+        "global": {
+            "lines": 80,
+            "branches": 80,
+            "function": 80,
+            "statements": 80
 
-//             // lines: 50,
-//             // branches: 50,
-//             // function: 50,
-//             // statements: 50
-//         },
-//     },
-//     // verbose: true,
-// };
+            // lines: 50,
+            // branches: 50,
+            // function: 50,
+            // statements: 50
+        },
+    }
+    // verbose: true,
+};
 
-// module.exports = config;
+module.exports = config;
 
 
 // "jest": {
