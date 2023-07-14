@@ -1,0 +1,23 @@
+yarn run v1.22.19
+$ NODE_ENV=development gulp lint --json
+[17:39:24] Failed to load external module @babel/register
+[17:39:24] Error: Cannot find module '@babel/register' from '/Users/loiluong/Desktop/myTesting/myTesting-CICD'
+[17:39:24] Failed to load external module babel-register
+[17:39:24] Error: Cannot find module 'babel-register' from '/Users/loiluong/Desktop/myTesting/myTesting-CICD'
+[17:39:24] Failed to load external module babel-core/register
+[17:39:24] Error: Cannot find module 'babel-core/register' from '/Users/loiluong/Desktop/myTesting/myTesting-CICD'
+[17:39:24] Failed to load external module babel/register
+[17:39:24] Error: Cannot find module 'babel/register' from '/Users/loiluong/Desktop/myTesting/myTesting-CICD'
+[17:39:25] Using gulpfile ~/Desktop/myTesting/myTesting-CICD/gulpfile.babel.js
+[17:39:25] Starting 'lint'...
+
+src/index.js
+  line 5   col 1   Use the function form of "use strict".
+  line 22  col 2   Missing semicolon.
+  line 8   col 16  'require' is not defined.
+  line 10  col 1   'module' is not defined.
+
+  ⚠  4 warnings
+
+[17:39:25] Finished 'lint' after 16 ms
+Done in 1.69s.

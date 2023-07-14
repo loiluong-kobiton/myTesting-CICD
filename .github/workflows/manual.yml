@@ -46,11 +46,11 @@ jobs:
       
 
 
-      # - name: Install dependencies
-      #   run: |
-      #     echo "Install node status: ${{ steps.install.outcome }}"
-      #     npm install --global yarn
-      #     yarn install
+      - name: Install dependencies
+        run: |
+          echo "Install node status: ${{ steps.install.outcome }}"
+          npm install --global yarn
+          npm install
 
       - uses: jwalton/gh-find-current-pr@v1
         id: findPr
