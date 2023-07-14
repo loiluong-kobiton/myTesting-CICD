@@ -10,7 +10,13 @@ on:
   
   push:
     branches:
-      - '**'
+      - main
+
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
 
 
 jobs:
@@ -32,16 +38,21 @@ jobs:
       - name: Clone Repository (Latest)
         uses: actions/checkout@v3
 
-      - name: Install Node.js ${{ github.event.inputs.node-version }}
-        id: install-node
+      - name: Install Node.js ${{ github.event.inputs.node-version }} 
+        # if: github.event_name == 'workflow_dispatch'
+        id: install-node-manually
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ github.event.inputs.node-version}}
+          node-version: ${{ github.event.inputs.node-version || '14.x' }}
       
+
+
       - name: echo Install status
         run: |
           echo "Install node status: ${{ steps.install.outcome }}"
       
+
+
       - name: check coverage
         id: coverage
         uses: ArtiomTr/jest-coverage-report-action@v2
@@ -50,8 +61,6 @@ jobs:
           test-script: yarn test
           output: comment, report-markdown
 
-      - name: echo coverage report
-        run: cat report.json
 
       - name: echo Coverage status
         run: echo ${{ steps.coverage.outcome }}
