@@ -6,10 +6,10 @@ const config = {
             // "function": 80,
             // "statements": 80
 
-            lines: 50,
-            branches: 50,
-            function: 50,
-            statements: 50
+            "lines": 50,
+            "branches": 50,
+            "function": 50,
+            "statements": 50
         },
     },
     "verbose": true,
