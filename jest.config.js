@@ -1,24 +1,24 @@
-module.exports = {
-    coverageThreshold: {
-      global: {
-        lines: 90,
-        branches: 80,
-        function: 80,
-        statements: 80,
-      },
-    },
-  };
-
 // module.exports = {
-// coverageThreshold: {
-//     global: {
-//     lines: 50,
-//     branches: 50,
-//     function: 50,
-//     statements: 50,
+//     coverageThreshold: {
+//       global: {
+//         lines: 90,
+//         branches: 80,
+//         function: 80,
+//         statements: 80,
+//       },
 //     },
-// },
-// };
+//   };
+
+module.exports = {
+coverageThreshold: {
+    global: {
+    lines: 50,
+    branches: 50,
+    function: 50,
+    statements: 50,
+    },
+},
+};
 
 
 

@@ -51,7 +51,7 @@ jobs:
           echo "Install node status: ${{ steps.install.outcome }}"
           npm install --global yarn
           npm install
-          npm install eslint-plugin-standard --save-dev
+          npm install eslint-plugin-standard@latest --save-dev
 
       # - uses: jwalton/gh-find-current-pr@v1
       #   id: findPr
@@ -77,8 +77,8 @@ jobs:
          
 
 
-      # - name: echo Coverage status
-      #   run: echo ${{ steps.coverage.outcome }}
+      - name: echo Coverage status
+        run: echo ${{ steps.coverage.outcome }}
 
        
       - name: My Lint Action
