@@ -76,8 +76,8 @@ jobs:
          
 
 
-      - name: echo Coverage status
-        run: echo ${{ steps.coverage.outcome }}
+      # - name: echo Coverage status
+      #   run: echo ${{ steps.coverage.outcome }}
 
        
       - name: My Lint Action
