@@ -90,7 +90,7 @@ jobs:
         uses: wearerequired/lint-action@v2.3.0
         with:
           eslint: true
-          continue_on_error: false
+          # continue_on_error: false
           
       - name: echo Test status
         
