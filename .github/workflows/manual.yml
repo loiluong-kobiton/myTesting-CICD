@@ -12,11 +12,8 @@ on:
     branches:
       - main
 
-  pull_request:
-    types:
-      - review_requested
-    branches:
-      - main
+  pull_request_review:
+    types: [submitted]
 
 
 jobs:
@@ -92,14 +89,14 @@ jobs:
         with:
           eslint: true
           
-      # - name: echo Test status
+      - name: echo Test status
         
-      #   run: |
-      #     echo "Yarn test status: "${{ steps.coverage.outcome }}
-      #     echo "Yarn lint status: "${{ steps.eslint.outcome }}
-      #     if [ ${{ steps.coverage.outcome }} == 'failure' ] || [ ${{ steps.eslint.outcome }} == 'failure' ]; then
-      #       exit 1
-      #     fi
+        run: |
+          echo "Yarn test status: "${{ steps.coverage.outcome }}
+          echo "Yarn lint status: "${{ steps.eslint.outcome }}
+          if [ ${{ steps.coverage.outcome }} == 'failure' ] || [ ${{ steps.eslint.outcome }} == 'failure' ]; then
+            exit 1
+          fi
         
 
         
