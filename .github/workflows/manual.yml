@@ -92,10 +92,17 @@ jobs:
         with:
           eslint: true
           
-      - name: echo Coverage status
-        run: |
-          echo ${{ steps.coverage.outcome }}
-          echo ${{ steps.eslint.outcome }}
+      # - name: echo Test status
+        
+      #   run: |
+      #     echo "Yarn test status: "${{ steps.coverage.outcome }}
+      #     echo "Yarn lint status: "${{ steps.eslint.outcome }}
+      #     if [ ${{ steps.coverage.outcome }} == 'failure' ] || [ ${{ steps.eslint.outcome }} == 'failure' ]; then
+      #       exit 1
+      #     fi
+        
+
+        
   
       
         
