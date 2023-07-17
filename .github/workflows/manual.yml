@@ -53,8 +53,8 @@ jobs:
           
 
 
-      - uses: jwalton/gh-find-current-pr@v1
-        id: findPr
+      # - uses: jwalton/gh-find-current-pr@v1
+      #   id: findPr
 
 
       - name: check coverage
@@ -66,7 +66,7 @@ jobs:
           test-script: yarn test
           # output: comment, report-markdown
           # skip-step: install
-          prnumber: ${{ steps.findPr.outputs.number }}
+          # prnumber: ${{ steps.findPr.outputs.number }}
 
          
 
