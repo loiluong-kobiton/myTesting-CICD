@@ -51,14 +51,15 @@ jobs:
           echo "Install node status: ${{ steps.install.outcome }}"
           npm install --global yarn
           npm install
+          npm install eslint-plugin-standard --save-dev
 
-      - uses: jwalton/gh-find-current-pr@v1
-        id: findPr
+      # - uses: jwalton/gh-find-current-pr@v1
+      #   id: findPr
 
 
       - name: check coverage
         id: coverage
-        continue-on-error: true
+        # continue-on-error: true
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           # package-manager: yarn
