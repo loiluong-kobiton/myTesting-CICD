@@ -78,22 +78,25 @@ jobs:
          
 
 
-      - name: echo Coverage status
+      - name: Install ESlint and Babel
         run: |
-          echo ${{ steps.coverage.outcome }}
           npm install eslint eslint-plugin-standard eslint-config-standard --save-dev
           npm install eslint-plugin-babel@latest --save-dev
 
        
 
 
-      # - name: Lint Action 
-      #   uses: wearerequired/lint-action@v2.3.0
-      #   with:
-      #     eslint: true
-      - name: Linting Action
-        uses: ryanclark/lint-action@v1.15.0
-
+      - name: Lint Action 
+        id: eslint
+        uses: wearerequired/lint-action@v2.3.0
+        with:
+          eslint: true
+          
+      - name: echo Coverage status
+        run: |
+          echo ${{ steps.coverage.outcome }}
+          echo ${{ steps.eslint.outcome }}
+  
       
         
   build:
@@ -102,7 +105,7 @@ jobs:
     steps:
       - name: building step
         run: |
-          echo "Hello ${{ github.event.inputs.node-version }}"
-          echo "status of test - install node ${{ needs.test.result }}"
+          echo "Hello ${{ github.event.inputs.node-version || '14.x' }}"
+          echo "status of test : ${{ needs.test.result }}"
       
 
