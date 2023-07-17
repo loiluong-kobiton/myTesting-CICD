@@ -51,6 +51,8 @@ jobs:
           echo "Install node status: ${{ steps.install.outcome }}"
           npm install --global yarn
           npm install
+          
+
 
       - uses: jwalton/gh-find-current-pr@v1
         id: findPr
@@ -76,17 +78,32 @@ jobs:
          
 
 
-      # - name: echo Coverage status
-      #   run: echo ${{ steps.coverage.outcome }}
+      - name: Install ESlint and Babel
+        run: |
+          npm install eslint eslint-plugin-standard eslint-config-standard --save-dev
+          npm install eslint-plugin-babel@latest --save-dev
 
        
-      - name: My Lint Action
-        run: yarn lint
+
 
       - name: Lint Action 
+        id: eslint
         uses: wearerequired/lint-action@v2.3.0
         with:
           eslint: true
+          
+      # - name: echo Test status
+        
+      #   run: |
+      #     echo "Yarn test status: "${{ steps.coverage.outcome }}
+      #     echo "Yarn lint status: "${{ steps.eslint.outcome }}
+      #     if [ ${{ steps.coverage.outcome }} == 'failure' ] || [ ${{ steps.eslint.outcome }} == 'failure' ]; then
+      #       exit 1
+      #     fi
+        
+
+        
+  
       
         
   build:
@@ -95,7 +112,7 @@ jobs:
     steps:
       - name: building step
         run: |
-          echo "Hello ${{ github.event.inputs.node-version }}"
-          echo "status of test - install node ${{ needs.test.result }}"
+          echo "Hello ${{ github.event.inputs.node-version || '14.x' }}"
+          echo "status of test : ${{ needs.test.result }}"
       
 
