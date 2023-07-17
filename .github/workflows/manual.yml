@@ -82,6 +82,7 @@ jobs:
         run: |
           echo ${{ steps.coverage.outcome }}
           npm install eslint eslint-plugin-standard eslint-config-standard --save-dev
+          npm install eslint-plugin-babel@latest --save-dev
 
        
       - name: My Lint Action
