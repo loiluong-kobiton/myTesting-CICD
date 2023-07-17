@@ -85,13 +85,15 @@ jobs:
           npm install eslint-plugin-babel@latest --save-dev
 
        
-      - name: My Lint Action
-        run: yarn lint
 
-      - name: Lint Action 
-        uses: wearerequired/lint-action@v2.3.0
-        with:
-          eslint: true
+
+      # - name: Lint Action 
+      #   uses: wearerequired/lint-action@v2.3.0
+      #   with:
+      #     eslint: true
+      - name: Linting Action
+        uses: ryanclark/lint-action@v1.15.0
+
       
         
   build:
