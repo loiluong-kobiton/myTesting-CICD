@@ -65,7 +65,8 @@ jobs:
           # package-manager: yarn
           test-script: yarn test
           # output: comment, report-markdown
-          # skip-step: install
+          skip-step: install
+          annotations: none
           # prnumber: ${{ steps.findPr.outputs.number }}
 
          
