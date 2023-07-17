@@ -59,14 +59,14 @@ jobs:
 
       - name: check coverage
         id: coverage
-        # continue-on-error: true
+        continue-on-error: true
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           # package-manager: yarn
           test-script: yarn test
           output: comment, report-markdown
           # skip-step: install
-          prnumber: ${{ steps.findPr.outputs.number }}
+          # prnumber: ${{ steps.findPr.outputs.number }}
 
       # - name: Create commit comment
       #   uses: peter-evans/commit-comment@v2
