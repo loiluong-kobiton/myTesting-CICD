@@ -31,6 +31,10 @@ on:
     types:
       - opened
 
+# permissions:
+#   checks: write
+#   pull-requests: write
+#   contents: write
 
 jobs:
   # greet:
@@ -42,10 +46,7 @@ jobs:
   test:
     name: Yarn test
     runs-on: ubuntu-latest
-    permissions:
-      checks: write
-      pull-requests: write
-      contents: write
+
     steps:
       - name: Clone Repository (Latest)
         uses: actions/checkout@v3
@@ -69,6 +70,9 @@ jobs:
       - uses: jwalton/gh-find-current-pr@v1
         id: findPr
 
+      - name: print PR number
+        run: echo ${{ steps.findPr.outputs.number }}
+
 
       - name: check coverage
         id: coverage
@@ -76,7 +80,7 @@ jobs:
         continue-on-error: true
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          # package-manager: yarn
+          package-manager: yarn
           test-script: yarn test
           # output: comment, report-markdown
           skip-step: install
