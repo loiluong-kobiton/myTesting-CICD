@@ -31,10 +31,10 @@ on:
     types:
       - opened
 
-permissions:
-  checks: write
-  pull-requests: write
-  contents: write
+# permissions:
+#   checks: write
+#   pull-requests: write
+#   contents: write
 
 jobs:
   # greet:
