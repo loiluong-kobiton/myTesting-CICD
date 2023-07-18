@@ -10,19 +10,15 @@ on:
       yarn-test:
         description: 'Run Yarn test ?'
         required: false
-        default: 'false'
-        type: choice
-        options:
-        - 'false'
-        - 'true'
+        default: 'no'
+        type: string
+
       eslint:
         description: 'Run ESLint ?'
         required: false
-        default: 'false'
-        type: choice
-        options:
-        - 'false'
-        - 'true'
+        default: 'no'
+        type: string
+
   
   
   push:
@@ -76,7 +72,7 @@ jobs:
 
       - name: check coverage
         id: coverage
-        if: inputs.yarn-test == 'true'
+        if: inputs.yarn-test == 'yes'
         continue-on-error: true
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
@@ -101,7 +97,7 @@ jobs:
 
       - name: Lint Action 
         id: eslint
-        if: inputs.eslint == 'true'
+        if: inputs.eslint == 'yes'
         uses: wearerequired/lint-action@v2.3.0
         continue-on-error: true
         with:
