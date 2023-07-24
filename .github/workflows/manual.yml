@@ -1,6 +1,6 @@
 name: test and get result on commit
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       node-version:
         description: 'Node version'
@@ -10,19 +10,21 @@ on:
       yarn-test:
         description: 'Run Yarn test ?'
         required: false
-        default: 'false'
-        type: choice
-        options:
-        - 'false'
-        - 'true'
+        default: 'no'
+        type: string
+
       eslint:
         description: 'Run ESLint ?'
         required: false
-        default: 'false'
-        type: choice
-        options:
-        - 'false'
-        - 'true'
+        default: ''
+        type: string
+
+      install-option:
+        description: 'Install option ?'
+        required: false
+        default: '--frozen-lockfile'
+        type: string
+
   
   
   push:
@@ -35,6 +37,10 @@ on:
     types:
       - opened
 
+# permissions:
+#   checks: write
+#   pull-requests: write
+#   contents: write
 
 jobs:
   # greet:
@@ -44,12 +50,9 @@ jobs:
   #       run: echo "Hello this is testing install and test Node.js ${{ github.event.inputs.node-version }}"
 
   test:
-    name: Yarn test
+    name: Yarn test and ESLint
     runs-on: ubuntu-latest
-    permissions:
-      checks: write
-      pull-requests: write
-      contents: write
+
     steps:
       - name: Clone Repository (Latest)
         uses: actions/checkout@v3
@@ -66,25 +69,29 @@ jobs:
         run: |
           # echo "Install node status: ${{ steps.install.outcome }}"
           npm install --global yarn
-          npm install
+          yarn install ${{ github.event.inputs.install-option }}
           
 
 
       # - uses: jwalton/gh-find-current-pr@v1
       #   id: findPr
 
+      - name: print PR number
+        run: echo ${{ steps.findPr.outputs.number }}
+
 
       - name: check coverage
         id: coverage
-        if: inputs.yarn-test == 'true'
+        if: inputs.yarn-test == 'yes'
         continue-on-error: true
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          # package-manager: yarn
+          package-manager: yarn
           test-script: yarn test
           # output: comment, report-markdown
           skip-step: install
           annotations: all
+          # prnumber: ${{ steps.findPr.outputs.number }}
 
 
          
@@ -96,11 +103,14 @@ jobs:
           npm install eslint-plugin-babel@latest --save-dev
 
        
+      - name: Lint Action ver 1
+        run: yarn lint
 
+      
 
       - name: Lint Action 
         id: eslint
-        if: inputs.eslint == 'true'
+        if: inputs.eslint == 'yes'
         uses: wearerequired/lint-action@v2.3.0
         continue-on-error: true
         with:
@@ -108,15 +118,15 @@ jobs:
           continue_on_error: false
           
 
-      # - name: Create commit comment
-      #   uses: peter-evans/commit-comment@v2
-      #   # continue-on-error: true
-      #   if: steps.coverage.outcome == 'failure'
-      #   with:
-      #     body: |
-      #       Status of following steps:
-      #       - Yarn test: ${{ steps.coverage.outcome }}
-      #       - Yarn lint: ${{ steps.eslint.outcome }}
+      - name: Create commit comment
+        uses: peter-evans/commit-comment@v2
+        # continue-on-error: true
+        if: steps.coverage.outcome == 'failure'
+        with:
+          body: |
+            Status of following steps:
+            - Yarn test: ${{ steps.coverage.outcome }}
+            - Yarn lint: ${{ steps.eslint.outcome }}
 
 
 
