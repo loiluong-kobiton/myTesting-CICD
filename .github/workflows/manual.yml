@@ -69,7 +69,7 @@ jobs:
         run: |
           # echo "Install node status: ${{ steps.install.outcome }}"
           npm install --global yarn
-          yarn install ${{ github.event.inputs.install-option }}
+          yarn install "${{ github.event.inputs.install-option }}"
           
 
 
