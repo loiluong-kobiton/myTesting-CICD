@@ -16,7 +16,13 @@ on:
       eslint:
         description: 'Run ESLint ?'
         required: false
-        default: 'no'
+        default: ''
+        type: string
+
+      install-option:
+        description: 'Install option ?'
+        required: false
+        default: '--frozen-lockfile'
         type: string
 
   
@@ -63,7 +69,7 @@ jobs:
         run: |
           # echo "Install node status: ${{ steps.install.outcome }}"
           npm install --global yarn
-          npm install
+          yarn install ${{ github.event.inputs.install-option }}
           
 
 
